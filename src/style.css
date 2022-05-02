@@ -39,3 +39,17 @@ li {
   height: 64px;
   width: 64px;
 }
+.weather-temperature strong {
+  color: rgb(33, 33, 33);
+  font-size: 57px;
+  font-weight: 400px;
+  line-height: 1;
+}
+.weather-temperature .units {
+  position: relative;
+  font-size: 16px;
+  top: -30px;
+}
+.units a {
+  text-decoration: none;
+}
