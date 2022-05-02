@@ -26,7 +26,8 @@ function displayTemperature(responce) {
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = responce.data.name;
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(responce.data.main.temp);
+  celsiusTemperature = responce.data.main.temp;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   descriptionElement = document.querySelector("#description");
   descriptionElement.innerHTML = responce.data.weather[0].description;
   let dateElement = document.querySelector("#date");
@@ -54,7 +55,32 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let celsiusTemperature = null;
 
 search("new York");
